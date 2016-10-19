@@ -1,0 +1,182 @@
+<view class = "groupInfoId">
+  <view class = "weui__cells">
+    <view class = "weui__cell" bindtap = "handleName">
+      <text class = "flexL">群组名</text>
+      <text class = "flexR" hidden = "{{ isNameHide }}">{{ searchId.groupName }}</text>
+      <text class = "flexR" hidden = "{{ modifyNameIsHide }}">{{ modifyName }}</text>
+      <text class = "weui-cell__ft"></text>
+    </view>
+  </view>
+  <view class = "weui__cells">
+    <view class = "weui__cell" bindtap = "handleRemark">
+      <text class = "flexL">群组备注</text>
+      <text class = "flexR" hidden = "{{ isRemarkHide }}">{{ searchId.groupRemark }}</text>
+      <text class = "flexR" hidden = "{{ modifyRemarkIsHide }}">{{ modifyRemark }}</text>
+      <text class = "weui-cell__ft"></text>
+    </view>
+  </view>
+  <view class = "weui__cells">
+    <view class = "weui__cell" bindtap = "handleHead">
+      <text class = "flexL">我的头像</text>
+      <view wx:if='{{ isModifyHead }}'>
+        <image class = "personImg" src = "{{ modifyHead }}" model = "aspectFill"></image>
+      </view>
+      <view wx:else>
+        <image class = "personImg" src = "{{ searchId.userHead }}" model = "aspectFill"></image>
+      </view>
+      <text class = "weui-cell__ft"></text>
+    </view>
+  </view>
+  <view class = "weui__cells">
+    <view class = "weui__cell" bindtap = "handleNickname">
+      <text class = "flexL">我的群组昵称</text>
+      <text class = "flexR" hidden = "{{ isNicknameHide }}">{{ myNickName }}</text>
+      <text class = "flexR" hidden = "{{ modifyNickNameIsHide }}">{{ modifyNickName }}</text>
+      <text class = "weui-cell__ft"></text>
+    </view>
+  </view>
+  <view class = "weui__cells">
+    <view class = "weui__cell" bindtap = "handleCode">
+      <text class = "weui-cell__bd">群组二维码</text>
+      <text>二维码</text>
+      <text class = "weui-cell__ft"></text>
+    </view>
+  </view>
+  <view class = "weui__cells">
+    <view class = "weui__cell">
+      <text class = "weui-cell__bd">群组ID</text>
+      <text>{{ searchId.groupId }}</text>
+      <text class = "weui-cell__ft"></text>
+    </view>
+  </view>
+
+  <view class = "widgets__item">
+    <text class = "weui__cells__title"> {{ createPerson }} </text>
+    <view class = "weui__cells" data-id = "{{ item.id }}">
+      <view class = "weui__cell">
+        <image class = "personImg" src = "{{ myHeader }}" model = "aspectFill"></image>
+        <text class = "weui-cell__bd"> {{ myNickName }} </text>
+        <text class = "weui-cell__ft"></text>
+      </view>
+    </view>
+  </view>
+  <!--管理员-->
+  <view class = "widgets__item">
+    <text class = "weui__cells__title"> {{ managePerson }} </text>
+    <view wx:if='{{ manageList.length == 0 }}'>
+      <view class = "weui__cells">
+        <view class = "weui__cell">
+            <text class = "weui-cell__bd middle"> 暂无成员 </text>
+            <text class = "weui-cell__ft"></text>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+    <block wx:for-items="{{ manageList }}">
+      <view class = "weui__cells" data-userId = "{{ item.userId }}" bindtap = "handleManage">
+        <view class = "weui__cell">
+            <image class = "personImg" src = "{{item.userHead}}" model = "aspectFill"></image>
+            <text class = "weui-cell__bd"> {{ item.userName }} </text>
+            <text class = "weui-cell__ft"></text>
+        </view>
+      </view>
+      <!--弹出框-->
+      <action-sheet hidden="{{ actionSheetManage }}" bindchange="actionSheetManage">
+        <block wx:for-items="{{ manageSheet }}">
+          <action-sheet-item class = "item" bindtap = "handle{{ item.id }}">{{ item.name }}</action-sheet-item>
+        </block>
+        <action-sheet-cancel class = "cancle">取消</action-sheet-cancel>
+      </action-sheet>
+    </block>
+    </view>
+  </view>
+  <!--群组成员-->
+  <view class = "widgets__item">
+    <text class = "weui__cells__title"> {{ groupPerson }} </text>
+    <view wx:if='{{ userList.length == 0 }}'>
+      <view class = "weui__cells">
+        <view class = "weui__cell">
+            <text class = "weui-cell__bd middle"> 暂无成员 </text>
+            <text class = "weui-cell__ft"></text>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+    <block wx:for-items="{{ userList }}">
+      <view class = "weui__cells" data-userId = "{{ item.userId }}" bindtap = "handleUser">
+        <view class = "weui__cell">
+            <image class = "personImg" src = "{{item.userHead}}" model = "aspectFill"></image>
+            <text class = "weui-cell__bd"> {{ item.userName }} </text>
+            <text class = "weui-cell__ft"></text>
+        </view>
+      </view>
+      <!--弹出框-->
+      <action-sheet hidden="{{ actionSheetUser }}" bindchange="actionSheetUser">
+        <block wx:for-items="{{ userSheet }}">
+          <action-sheet-item class = "item" bindtap = "handle{{ item.id }}">{{ item.name }}</action-sheet-item>
+        </block>
+        <action-sheet-cancel class = "cancle">取消</action-sheet-cancel>
+      </action-sheet>
+    </block>
+    </view>
+  </view>
+<!--名称-->
+  <modal 
+  title="修改" 
+  confirm-text="确定" 
+  cancel-text="取消" 
+  hidden="{{modifyNameHidden}}" 
+  bindconfirm="modifyNameConfir" 
+  bindcancel="modifyNameCancle">
+    <view class = "section">
+      <label>群组名</label>
+      <input bindinput = "modifyName" value = '{{ searchId.groupName }}'/>
+    </view>
+</modal>
+<!--备注-->
+<modal 
+  title="修改" 
+  confirm-text="确定" 
+  cancel-text="取消" 
+  hidden="{{modifyRemarkHidden}}" 
+  bindconfirm="modifyRemarkConfir" 
+  bindcancel="modifyRemarkCancle">
+  <view class = "section">
+    <label>群组备注</label>
+    <input bindinput = "modifyRemark" value = '{{ searchId.groupRemark }}'/>
+  </view>
+</modal>
+<!--昵称-->
+<modal 
+  title="修改" 
+  confirm-text="确定" 
+  cancel-text="取消" 
+  hidden="{{modifyNikNameHidden}}" 
+  bindconfirm="modifyNikNameConfir" 
+  bindcancel="modifyNikNameCancle">
+  <view class = "section">
+    <label style = "flex:4">我的群组昵称</label>
+    <input bindinput = "modifyNikName" value = '{{ myNickName }}'/>
+  </view>
+</modal>
+<!--头像-->
+<modal 
+  title="修改" 
+  confirm-text="确定" 
+  cancel-text="取消" 
+  hidden="{{modifyHeadHidden}}" 
+  bindconfirm="modifyHeadConfir" 
+  bindcancel="modifyHeadCancle">
+  <view class = "section">
+    <label style = "flex:4">我的头像</label>
+    <view wx:if='{{ isModifyHead }}'>
+      <image class = "personImg" bindtap = "modifyHead" src = "{{ modifyHead }}" model = "aspectFill"></image>
+    </view>
+    <view wx:else>
+      <image class = "personImg" bindtap = "modifyHead" src = "{{ searchId.userHead }}" model = "aspectFill"></image>
+    </view>
+  </view>
+</modal>
+
+<toast hidden="{{toastHidden}}" bindchange = "handleToast" duration = "500">{{ infoTips }}</toast>
+</view>

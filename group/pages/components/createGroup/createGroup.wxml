@@ -1,0 +1,24 @@
+<view class = 'createGroup'>
+  <view class="section">
+    <label>群组名</label>
+    <input placeholder="请输入群组名" id = "name" auto-focus bindchange="handleName"/>
+  </view>
+  <view class="section">
+    <label>群组备注</label>
+    <input placeholder="选填" id = "remark" bindinput="handleRemRemark"/>
+  </view>
+  <!--<view class="section">
+    <label>我的昵称</label>
+    <input placeholder="选填" bindchange="handleNickName"/>
+  </view>-->
+</view>
+<modal title="提示" confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" bindconfirm="modalConfir" bindcancel="modalCancle">
+    {{modalCont}}
+</modal>
+<view class = "next__wrap">
+  <button 
+    class = "next__btn"
+    type="primary" 
+    size="default"  
+    bindtap="handleNext">下一步</button>
+</view>

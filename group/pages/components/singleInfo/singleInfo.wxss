@@ -1,0 +1,32 @@
+.infoList .item__article .article_cont {
+  background:#fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 20rpx;
+  margin: 20rpx;
+}
+.item_date {
+    display:block;
+    text-align:center;
+    margin:20rpx 0;
+}
+.article_head {
+    display: flex;
+    justify-content: space-between;
+}
+.article_date {
+    display:block;
+    color: #ccc;
+}
+.article_item {
+    display:-webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp:2;
+    text-overflow: ellipsis;
+    line-height: 120%;
+}
+.look__detial {
+    display:flex;
+    justify-content: space-between;
+}

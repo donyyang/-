@@ -1,0 +1,86 @@
+<!--index.wxml-->
+<view class="container">
+ <view class = "widgets__item" bindtap = "createGroup">
+  <view class = "weui__cells">
+    <view class = "weui__cell">
+      <image class = "weui__icon" src = "/image/plus.png" mode = "aspectFill" />
+      <text class = "weui-cell__bd">{{ creatGroup }}</text>
+    </view>
+  </view>
+ </view>
+ <!--创建的群-->
+ <view class = "widgets__item">
+  <text class = "weui__cells__title"> {{ groupTitle }} </text>
+  <view wx:if = '{{ myGroup.length == 0 }}'>
+    <view class = "weui__cells">
+      <view class = "weui__cell">
+          <text class = "weui-cell__bd middle"> 暂无管理的群 </text>
+          <text class = "weui-cell__ft"></text>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+    <block wx:for-items="{{ myGroup }}">
+      <view class = "weui__cells" data-id = "{{ item.groupId }}" bindtap = "creatGroupVw">
+        <view class = "weui__cell">
+          <text class = "weui-cell__bd">{{ item.groupName }}</text>
+          <text class = "weui-cell__ft"></text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view>
+    <action-sheet hidden="{{ actionSheetHidden }}" bindchange="actionSheetChange">
+      <block wx:for-items="{{ actionSheetItems }}">
+        <navigator url = "../../components/{{ item.page }}/{{ item.page }}">
+          <action-sheet-item class = "item">{{ item.name }}</action-sheet-item>
+        </navigator>
+      </block>
+      <action-sheet-cancel class = "cancle">取消</action-sheet-cancel>
+    </action-sheet>
+  </view>
+ </view>
+ <!--管理的群-->
+ <view class = "widgets__item">
+  <text class = "weui__cells__title"> {{ manageGroupTitle }} </text>
+  <view wx:if = '{{ manageGroup.length == 0 }}'>
+    <view class = "weui__cells">
+      <view class = "weui__cell">
+          <text class = "weui-cell__bd middle"> 暂无管理的群 </text>
+          <text class = "weui-cell__ft"></text>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+    <block wx:for-items="{{ manageGroup }}">
+      <view class = "weui__cells" data-id = "{{ item.groupId }}" bindtap = "manageGroupVw">
+        <view class = "weui__cell">
+          <text class = "weui-cell__bd"> {{ item.groupName }} </text>
+          <text class = "weui-cell__ft"></text>
+        </view>
+      </view>
+    </block>
+  </view>
+ </view>
+ <!--加入的群-->
+ <view class = "widgets__item">
+  <text class = "weui__cells__title"> {{ addGroupTitle }} </text>
+  <view wx:if = '{{ addGroup.length == 0 }}'>
+    <view class = "weui__cells">
+      <view class = "weui__cell">
+          <text class = "weui-cell__bd middle"> 暂无加入的群 </text>
+          <text class = "weui-cell__ft"></text>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+  <block wx:for-items="{{ addGroup }}">
+    <view class = "weui__cells" data-id = "{{ item.groupId }}" bindtap = "addGroupVw">
+      <view class = "weui__cell">
+        <text class = "weui-cell__bd"> {{ item.groupName }} </text>
+        <text class = "weui-cell__ft"></text>
+      </view>
+    </view>
+  </block>
+  </view>
+</view>

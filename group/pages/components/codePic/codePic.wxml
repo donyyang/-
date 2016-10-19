@@ -1,0 +1,8 @@
+<view class = "codePic">
+  <view>
+    <text>{{groupName}}的二维码</text>
+  </view>
+  <view>
+    <image style="width: 200px; height: 200px;" src="{{codePic}}" model = "aspectFill"></image>
+  </view>
+</view>

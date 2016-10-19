@@ -1,0 +1,15 @@
+.singleInfo {
+  background: #fff;
+}
+.singleInfo .infos {
+  padding:10px;
+}
+.singleInfo .unRead {
+  display: block;
+  text-align: right;
+  padding: 0 10px 10px 10px;
+}
+
+.unReadPerson {
+  border-top: 1px solid #D9D9D9;
+}

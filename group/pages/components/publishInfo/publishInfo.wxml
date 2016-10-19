@@ -1,0 +1,3 @@
+<view class = "publishInfo">
+  <text bingtap = "handleAdd">添加图片</text>
+</view>

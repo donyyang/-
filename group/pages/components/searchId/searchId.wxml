@@ -1,0 +1,72 @@
+<view class = "groupInfoId">
+  <view class = "weui__cells">
+    <view class = "weui__cell">
+      <text class = "weui-cell__bd">群组名</text>
+      <text class = "gName">{{ searchId.groupName }}</text>
+      <text class = "weui-cell__ft"></text>
+    </view>
+  </view>
+  <view class = "weui__cells">
+    <view class = "weui__cell">
+      <text class = "weui-cell__bd">群组备注</text>
+      <text>{{ searchId.groupRemark }}</text>
+      <text class = "weui-cell__ft"></text>
+    </view>
+  </view>
+  <view class = "weui__cells">
+    <view class = "weui__cell">
+      <text class = "weui-cell__bd">我的群组昵称</text>
+      <text>{{ myNickName }}</text>
+      <text class = "weui-cell__ft"></text>
+    </view>
+  </view>
+  <view class = "weui__cells">
+    <view class = "weui__cell" bindtap = "handleCode">
+      <text class = "weui-cell__bd">群组二维码</text>
+      <text>二维码</text>
+      <text class = "weui-cell__ft"></text>
+    </view>
+  </view>
+  <view class = "weui__cells">
+    <view class = "weui__cell">
+      <text class = "weui-cell__bd">群组ID</text>
+      <text>{{ searchId.groupId }}</text>
+      <text class = "weui-cell__ft"></text>
+    </view>
+  </view>
+
+  <view class = "widgets__item">
+    <text class = "weui__cells__title"> {{ createPerson }} </text>
+    <view class = "weui__cells" data-id = "{{ item.id }}" bindtap = "manageGroupVw">
+      <view class = "weui__cell">
+        <image class = "personImg" src = "{{ myHeader }}" model = "aspectFill"></image>
+        <text class = "weui-cell__bd"> {{ myNickName }} </text>
+        <text class = "weui-cell__ft"></text>
+      </view>
+    </view>
+  </view>
+  <!--管理员-->
+  <!--<view class = "widgets__item">
+    <text class = "weui__cells__title"> {{ managePerson }} </text>
+    <block wx:for-items="{{ manageGroup }}">
+      <view class = "weui__cells" data-id = "{{ item.id }}" bindtap = "manageGroupVw">
+        <view class = "weui__cell">
+            <text class = "widgets__info-name"> {{ item.name }} </text>
+            <image class="widget__arrow" src="/image/arrowright.png" mode="aspectFill" />
+        </view>
+      </view>
+    </block>
+  </view>-->
+  <!--群组成员-->
+  <!--<view class = "widgets__item">
+    <text class = "weui__cells__title"> {{ groupPerson }} </text>
+    <block wx:for-items="{{ manageGroup }}">
+      <view class = "weui__cells" data-id = "{{ item.id }}" bindtap = "manageGroupVw">
+        <view class = "weui__cell">
+            <text class = "widgets__info-name"> {{ item.name }} </text>
+            <image class="widget__arrow" src="/image/arrowright.png" mode="aspectFill" />
+        </view>
+      </view>
+    </block>
+  </view>-->
+</view>
