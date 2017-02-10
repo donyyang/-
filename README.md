@@ -1,7 +1,1 @@
-var http = require('http');
-
-http.createServer(function (req, res) {
-	res.writeHead(200,{'Content-Type': 'text/plain'});
-
-	res.end('hello world');
-}).listen(8888);
+** 用到了wx.connectSocket等webSocket。 wx.chooseImage图片,wx.startRecord录音，wx.palyVoice播放音频等其他API.
