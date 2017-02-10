@@ -1,0 +1,91 @@
+<view class = "responeActive">
+  <view style = "margin: 10px 0;">
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">活动主题</view>
+            <view class="weui-cell__ft">{{ activeName }}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">活动时间</view>
+            <view class="weui-cell__ft">{{ activeDate }}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">活动地点</view>
+            <view class="weui-cell__ft">{{ activePlace }}</view>
+            <view class = "active_place_icon" bindtap = "handlePlace"></view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">活动说明</view>
+            <view class="weui-cell__ft">{{ activeInfo }}</view>
+        </view>
+        <view wx:if = "{{ amount != 0 }}" class="weui-cell">
+            <view class="weui-cell__bd">金额</view>
+            <view class="weui-cell__ft">{{ amount }}</view>
+        </view>
+        <view wx:else class="weui-cell" style = "display: none">
+            
+        </view>
+    </view>
+    <view class = "weui-cells discuss" style = "margin-top: 10px;">
+        <view class="weui-cell" bindtap = "handleDiscuss">
+            <view class="weui-cell__bd">讨论区</view>
+            <view class="weui-cell__ft"></view>
+        </view>
+    </view>
+  </view>
+  <view class = "activityNums">
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell" style = "padding: 10px 15px;">
+            <view class="weui-cell__bd">报名人数</view>
+            <view class="weui-cell__ft" style = "flex: 6">{{activeNum}}人</view>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image src="{{creater.avatarUrl}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;border-radius: 50%"></image>
+                </view>
+                <view class="weui-cell__bd">
+                    <text>{{creater.nickName}}</text>
+                    <text class = "weui-cell__tips" style = "margin-left: 10px;">发起人</text>
+                </view>
+            </view>
+            <block wx:for = "{{ joinpeopleData }}" wx:key="*this">
+                <view class="weui-cell">
+                    <view class="weui-cell__hd">
+                        <image src="{{item.avatarUrl}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;border-radius: 50%"></image>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <text>{{item.nickName}}</text>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <!--<view class="weui-cells weui-cells_after-title">
+            <block wx:for-items = "{{ joinpeopleData }}" wx:key="*this">
+                <view class="weui-cell">
+                    <view class="weui-cell__hd">
+                        <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                    </view>
+                    <view class="weui-cell__ft">{{ item.name }}</view>
+                </view>
+            </block>
+        </view>-->
+    </view>
+  </view>
+  <view wx:if= "{{ isShowJoin }}" class = "join_btn_w">
+    <form class = "join_submit" bindsubmit = "handleJoin">
+        <button formType="submit" class="weui-btn" type="primary" style = "margin-right: 1%">{{ joinActivity }}</button>
+        <button 
+        bindtap = 'handleShare'
+        class="weui-btn" 
+        type="primary">分享活动</button>
+    </form>
+  </view>
+  <view wx:else  class = "join_btn_w_single">
+    <button 
+        bindtap = 'handleShare'
+        class="weui-btn" 
+        type="primary" 
+        style = "background:#10aeff;">支付</button>
+  </view>
+</view>

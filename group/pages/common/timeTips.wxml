@@ -1,0 +1,7 @@
+<template name="timeTips">
+    <view class = "time_tips">
+        <view class = "tips">
+            <view class = "time_num">{{ times }}</view>
+        </view>
+    </view>
+</template>

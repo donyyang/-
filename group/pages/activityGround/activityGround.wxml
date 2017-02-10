@@ -1,0 +1,64 @@
+<view style = "height: 100%;">
+  <view style = "height: 100%;">
+        <scroll-view 
+            scroll-y="true" 
+            bindscrolltolower="abindscrolltolower"
+            style="height: 100%">
+            <view class = "weui-cells weui-cells_after-title">
+                <view class="weui-cell" bindtap = "handleCreate">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">创建活动</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <view class="weui-cell__ft_in-access"></view>
+                    </view>
+                </view>
+                <view class="weui-cell" bindtap = "handleLaunch">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">我发起的活动</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <view class="weui-cell__ft_in-access"></view>
+                    </view>
+                </view>
+                <view class="weui-cell" bindtap = "handleAttend">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">我参与的活动</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <view class="weui-cell__ft_in-access"></view>
+                    </view>
+                </view>
+            </view>
+            <view class = "join_tips" wx:if = '{{attendDatas.length == 0}}'>
+            暂时没有活动！
+            </view>
+            <view wx:else>
+            <block wx:for = "{{ attendDatas }}" wx:key="{{ item.id }}">
+                <view class = "active_list">
+                <view class="weui-panel weui-panel_access" data-id = "{{ item.id }}" bindtap = "handleDetial">
+                    <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{ item.title }}</view>
+                    <view class="weui-media-box__desc">{{ item.beginTime }}</view>
+                    <view class="weui-media-box__desc">
+                        <text wx:if="{{!item.isDue}}" class = "adress_icon"></text>
+                        <text wx:else class = "adress_due_icon"></text>
+                        <text>{{ item.place }}</text>
+                    </view>
+                    <view class="weui-media-box__desc">
+                        <text wx:if="{{!item.isDue}}" class = "people_icon"></text>
+                        <text wx:else class = "people_due_icon"></text>
+                        <text>报名{{ item.attenderNum }}人</text>
+                    </view>
+                    </view>
+                    <view class = "active_mask" hidden = "{{!item.isDue}}"></view>
+                </view>
+                </view>
+            </block>
+            </view>
+        </scroll-view>
+  </view>
+  <!--<view class = "add_activity" bindtap = "handleAddActive">
+    <image style = "width: 60px;height: 55px" src = 'http://q.xiaoyuanhao.com/file/0c2e385d-1261-471d-8cf6-c59f16d547ff.png' mode="{{imgMode}}"></image>
+  </view>-->
+</view>

@@ -1,0 +1,5 @@
+<template name="scaleImg">
+    <view class = "scale_img">
+        <view class = "image_list" style = "background-image: url({{ imgSrc }})"></view>
+    </view>
+</template>

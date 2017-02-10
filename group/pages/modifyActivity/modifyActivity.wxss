@@ -1,0 +1,4 @@
+@import '../newActivity/newActivity.wxss';
+.weui-cell__bd {
+    color: #999;
+}

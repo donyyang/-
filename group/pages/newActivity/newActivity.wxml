@@ -1,0 +1,78 @@
+<view class = "newActivity_w">
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">活动主题</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" name = "activeName" placeholder="主题名称" bindinput = "handleName"  maxlength="14"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">活动日期</view>
+        </view>
+        <view class="weui-cell__bd">
+            <picker mode="date" value="{{activeDate}}" name = "activeDate" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+                <view class="weui-input  weui-cell__ft_in-access">{{activeDate}}</view>
+            </picker>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">活动时间</view>
+        </view>
+        <view class="weui-cell__bd">
+            <picker mode="time" value="{{activeTime}}" name = "activeTime" start="09:01" end="21:01" bindchange="bindTimeChange">
+                <view class="weui-input  weui-cell__ft_in-access">
+                {{activeTime}}
+                </view>
+            </picker>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">活动地点</view>
+        </view>
+        <view class="weui-cell__bd" style = "flex: 8">
+            <input class="weui-input" placeholder="活动地点" name = "address" value = "{{ address }}" bindchange = "handleIptAdress" maxlength="14"/>
+        </view>
+        <view class="weui-cell__bd" style = "text-align: right;" bindtap = "handleAdress">
+          <text class = "address_icon"></text>
+        </view>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_switch">
+            <view class="weui-cell__bd">收费</view>
+            <view class="weui-cell__ft">
+                <switch checked bindchange = "handleSwitch" name = "payAmount" />
+            </view>
+        </view>
+        <view wx:if = "{{isSwicth}}" class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+                <input type = "number" class="weui-input" placeholder="请输入金额" bindinput = "handlePay" />
+            </view>
+        </view>
+    </view>
+    <!--<view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入文本" />
+            </view>
+        </view>
+    </view>-->
+  </view>
+  <view class="weui-cells__title">活动说明</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <textarea class="weui-textarea" name = "activeDescript" placeholder="请输入文本(100字以内)" style="height: 6.3em" maxlength="500" bindblur = "handleDescript" />
+            </view>
+        </view>
+    </view>
+    <view class="page__bd page__bd_spacing" style = "margin-top: 20px">
+        <button class="weui-btn create_btn" type="primary" bindtap = "handleCreate" formType="submit" style = "background:  #10aeff;">{{ createBtn }}</button>
+    </view>
+   </form>
+</view>

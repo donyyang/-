@@ -1,0 +1,70 @@
+.responeActive {
+    margin-bottom: 80px;
+}
+.responeActive .weui-cell__bd {
+    flex: 2;
+}
+.responeActive .weui-cell__ft {
+    flex: 6;
+    text-align: left;
+}
+.responeActive .join_btn_w {
+    position: fixed;
+    width: 96%;
+    /*display: flex;*/
+    bottom: 0;
+    padding: 10px 2%;
+}
+.responeActive .join_btn_w .join_submit {
+    width: 100%;
+}
+.responeActive .join_btn_w .weui-btn {
+    width: 49%;
+    display: inline-block;
+    background:  #10aeff;
+}
+.responeActive .weui-btn:first-child {
+    margin-top: 15px;
+}
+.responeActive .active_place_icon {
+    width: 13px;
+    height: 16px;
+    background: url(http://q.xiaoyuanhao.com/file/14097bac-efd9-4ed2-82ae-f4bda96479f6.png) no-repeat;
+    background-size: 100%;
+}
+.responeActive  .join_btn_w_single {
+    position: fixed;
+    width: 96%;
+    display: flex;
+    bottom: 0;
+    padding: 10px 2%;
+}
+.responeActive .join_btn_w_single .weui-btn {
+    width: 100%;
+}
+.weui-cell__tips {
+    color: #999;
+    font-size: 14px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    vertical-align: middle;
+}
+
+.discuss .weui-cell__ft {
+  padding-right: 13px;
+  position: relative;
+}
+.discuss .weui-cell__ft:after {
+  content: " ";
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  border-width: 2px 2px 0 0;
+  border-color: #C8C8CD;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  top: -2px;
+  position: absolute;
+  margin-top: -4px;
+  right: 2px;
+}

@@ -1,75 +1,62 @@
 //app.js
+/**
+ online - wss://ws.xiaoyuanhao.com
+ test   - wss://ws.xiaoyuanhao.com/test
+ dev    - wss://ws.xiaoyuanhao.com/dev
+ */
 App({
-  onLaunch: function () {
-    this.getUserInfo();
-  }, 
-  globalData:{
-    items: [
-      {
-        name: '创建新的群组',
-        page: 'createGroup'
-      },
-      {
-        name: '通过群组ID添加群组',
-        page: 'idGroup'
-      },
-      {
-        name: '扫描二维码添加群组',
-        page: 'codeGroup'
-      },
-    ],
-    // 单独的data,从页面中的数据传过来
-    singledata:null,
-    userInfo: null,
-    HOST_URI: "http://115.236.94.220:55102/smater",
-    userId: 'u001',
-    // 点击每个群组的data
-    groupData: [],
-    myNickName: 'weixin',
-    // 默认的头像
-    userHead: 'http://b.hiphotos.baidu.com/baike/w%3D268%3Bg%3D0/sign=92e00c9b8f5494ee8722081f15ce87c3/29381f30e924b899c83ff41c6d061d950a7bf697.jpg',
+  onLaunch () {
   },
-  // 封装的ajax
-  fetchApi (url, data, callback) {
+  fetchApi (url, method, data, callback) {
+    let header;
+    method == 'GET' ? header = {"content-type":"application/x-www-form-urlencoded"} : header = { 'Content-Type': 'application/json' }
     wx.request({
-      url,
+      url: url,
+      method: method,
       data: data,
-      header: { 'Content-Type': 'application/json' },
+      header: header,
       success (res) {
-        callback(null, res.data)
+        callback(res.data)
       },
       fail (e) {
         callback(e)
       }
     })
   },
-  getUserInfo: function (cb) {
-    var that = this;
-    if (this.globalData.userInfo) {
-      typeof cb == "function" && cb(that.globalData.userInfo)
-    } else {
+  getUserInfo (cb){
+    var that = this
+
+    if(this.globalData.userInfo && this.globalData.userId){
+      typeof cb == "function" && cb(this.globalData.userInfo,this.globalData.userId)
+    }else{
+      //调用登录接口
       wx.login({
-        success: function (logRes) {
-          
-          wx.getUserInfo({
-            success: function (res) {
-              that.globalData.userInfo = res.userInfo;
-              typeof cb == "function" && cb(that.globalData.userInfo)
-              console.log(res);
-            }
-          })
-          // console.log(222,logRes.code);
-          if (logRes.code) {
-            wx.request({
-              url: 'https://api.weixin.qq.com/sns/jscode2session',
-              data: {
-                appid: 'wxc5340924550d61ce',
-                secret: '422b5316230e22a99a67f6ae8daa0718',
-                js_code: logRes.code,
-                grant_type: 'authorization_code',
-              },
-              success: function (res) {
-                // console.log(11112,res)
+        success: function (loginRes) {
+          console.log(234,loginRes.code);
+          if (that.globalData.userId) {
+            return cb(that.globalData.userInfo,that.globalData.userId);
+          }
+          if (loginRes.code) {
+            that.fetchApi(`${that.globalData.URL}onLogin`,'GET', {
+              code: loginRes.code,
+            }, (res) => {
+              if (res.code == 200) {
+                 wx.getUserInfo({
+                  success: function (userInfores) {
+                    that.globalData.userInfo = userInfores.userInfo
+                    that.fetchApi(`${that.globalData.URL}activity/userInfo`,'POST',{
+                      userId: res.data.userId,
+                      userInfo: userInfores.userInfo,
+                    },(userRes) => {
+                    that.globalData.userId = userRes.data.userId;
+                    try {
+                        wx.setStorageSync('userId', userRes.data.userId)
+                    } catch (e) {    
+                    }
+                    typeof cb == "function" && cb(that.globalData.userInfo,that.globalData.userId)
+                    })
+                  }
+                })
               }
             })
           }
@@ -77,4 +64,11 @@ App({
       })
     }
   },
+  globalData:{
+    userInfo:null,
+    userId: '',
+    URL: 'https://m.xiaoyuanhao.com/api/cms/',
+    wsURL: 'wss://ws.xiaoyuanhao.com/',
+    UPLOADURL: 'https://m.xiaoyuanhao.com/api/cms/store/file',
+  }
 })

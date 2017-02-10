@@ -1,0 +1,39 @@
+<view style = "height: 100%;">
+  <view style = "height: 100%;">
+    <scroll-view 
+      scroll-y="true" 
+      bindscrolltolower="cbindscrolltolower" 
+      style="height: 100%">
+      <view class = "join_tips" wx:if = '{{createDatas.length == 0}}'>
+        你还没有参加过活动，赶紧创建一个吧！
+      </view>
+      <view wx:else>
+        <block wx:for = "{{ createDatas }}" wx:key="{{ item.id }}">
+          <view class = "active_list">
+            <view class="weui-panel weui-panel_access" data-id = "{{ item.id }}" bindtap = "handleDetial">
+              <view class="weui-media-box weui-media-box_text">
+                <view class="weui-media-box__title weui-media-box__title_in-text">{{ item.title }}</view>
+                <view class="weui-media-box__desc">{{ item.beginTime }}</view>
+                <view class="weui-media-box__desc">
+                  <text wx:if="{{!item.isDue}}" class = "adress_icon"></text>
+                  <text wx:else class = "adress_due_icon"></text>
+                  <text>{{ item.place }}</text>
+                </view>
+                <view class="weui-media-box__desc">
+                    <text wx:if="{{!item.isDue}}" class = "people_icon"></text>
+                    <text wx:else class = "people_due_icon"></text>
+                    <text>报名{{ item.attenderNum }}人</text>
+                </view>
+              </view>
+              <view class = "active_mask" hidden = "{{!item.isDue}}"></view>
+            </view>
+            <view class = "active_opreate" data-id = "{{ item.id }}" bindtap = "handleOperate">点击</view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+  <!--<view class = "add_activity" bindtap = "handleAddActive">
+    <image style = "width: 60px;height: 55px" src = 'http://q.xiaoyuanhao.com/file/0c2e385d-1261-471d-8cf6-c59f16d547ff.png' mode="{{imgMode}}"></image>
+  </view>-->
+</view>

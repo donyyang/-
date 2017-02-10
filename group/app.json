@@ -1,34 +1,18 @@
 {
   "pages":[
-    "pages/components/index/index",
-    "pages/components/infoLists/infoLists",
-    "pages/components/createGroup/createGroup",
-    "pages/components/idGroup/idGroup",
-    "pages/components/groupInfo/groupInfo",
-    "pages/components/articleLists/articleLists", 
-    "pages/components/singleInfo/singleInfo",
-    "pages/components/searchId/searchId",
-    "pages/components/lookGroupInfo/lookGroupInfo", 
-    "pages/components/codePic/codePic",
-    "pages/components/publishInfo/publishInfo"
+    "pages/activityGround/activityGround",
+    "pages/index/index", 
+    "pages/newActivity/newActivity",
+    "pages/responeActivity/responeActivity",
+    "pages/attendActivity/attendActivity",
+    "pages/modifyActivity/modifyActivity",
+     "pages/activityChat/activityChat"
   ],
-   "tabBar": {
-    "selectedColor": "#3daef5",
-    "backgroundColor": "#fff",
-    "borderStyle": "black",
-    "list": [{
-      "pagePath": "pages/components/index/index",
-      "text": "我的群组"
-    }, {
-      "pagePath": "pages/components/infoLists/infoLists",
-      "text": "通知列表"
-    }]
-  },
   "window":{
-    "navigationBarBackgroundColor":"#3daef5",
-    "navigationBarTextStyle":"black",
-    "navigationBarTitleText":"小程序",
-    "backgroundColor":"#efefef",
-    "backgroundTextStyle":"light"
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#10aeff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"#fff",
+    "enablePullDownRefresh": false
   }
 }

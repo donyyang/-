@@ -1,0 +1,97 @@
+<import src="../common/timeTips.wxml" />
+<import src="../common/scaleImg.wxml" />
+<!--点击语音出现的-->
+<view hidden = "{{ timeModal }}">
+  <template is="timeTips" data=""/>
+</view>
+<!--放大图片-->
+<view bindtap = "handleImgHidden" hidden = "{{ scaleImgModal }}">
+  <template is="scaleImg" data="{{imgSrc: imgSrc}}"/>
+</view>
+
+<view style = "height: 100%;">
+    <view class = "chat_cont">
+        <scroll-view 
+        scroll-y="true" 
+        bindscrolltoupper="bindscrolltoupper" 
+        scroll-top="{{scrollTop}}
+        scroll-into-view="{{toView}}
+        style="height: 100%">
+            <block wx:for = "{{ sendMsg }}" wx:key="{{ item.id }}">
+                <!--自己发的-->
+                <view wx:if = "{{ !isSelf }}" class="page-body-time">
+                    <view class = "self_info">
+                        <view class = "change_time" wx:if="{{item.changeTimes}}">{{ item.changeTimes }}</view>
+                        <view wx:if = "{{ item.type == 'text' }}">
+                            <text class = "self_cont">{{ item.message }}</text>
+                        </view>
+                        <view class = "uploadImg" wx:elif = "{{ item.type == 'image' }}" style = "background-image:url({{ item.message }}?imageView/1/w/100/h/100);background-size: 100%;background-position:right;" data-src = "{{ item.message }}" bindtap = "handleScalePic">
+                        </view>
+                        <view wx:else style = "position:relative">
+                            <view class="weui-progress self_progress"  style = "width:{{ item.recordTime+20 }}%;background-color:{{ item.isColor }}">
+                                <view class = "play_icon" bindtap = "startPlay" data-url = "{{ item.message }}" data-recordTime = "{{ item.recordTime }}">{{ item.isPlay }}</view>
+                                <view class="weui-progress__bar">
+                                    <progress percent="{{ progress }}" stroke-width="3"/>
+                                </view>
+                                <view class="time-small">{{item.recordTime}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class = "self_person">
+                        <image src = "{{ item.avatarUrl }}" mode = "scaleToFill"></image>
+                    </view>
+                </view>
+                <!--他人发的-->
+                <view wx:else class="page-body-time">
+                    <view class = "change_time" wx:if="{{item.changeTimes}}">{{ item.changeTimes }}</view>
+                    <view class = "other_person">
+                        <image src = "{{ item.avatarUrl }}" mode = "scaleToFill"></image>
+                    </view>
+                    <view class = "other_info">
+                        <view class = "other_info_text">{{ item.username }}</view>
+                        <view>
+                            <view wx:if = "{{ item.type == 'text' }}">
+                                <text class = "self_cont">{{ item.message }}</text>
+                            </view>
+                            <view class = "uploadImg" wx:elif = "{{ item.type == 'image' }}" style = "background-image:url({{ item.message }}?imageView/1/w/100/h/100);background-size: 100%;background-position:right;" data-src = "{{ item.message }}" bindtap = "handleScalePic">
+                            </view>
+                            <view wx:else style = "position:relative">
+                                <view class="weui-progress"  style = "width:{{ item.recordTime+20 }}%;background-color:{{ item.isColor }}">
+                                    <view class = "play_icon" data-url = "{{ item.message }}" data-recordTime = "{{ item.recordTime }}" bindtap = "startPlay">{{ item.isPlay }}</view>
+                                    <view class="weui-progress__bar">
+                                        <progress percent="{{ progress }}" stroke-width="3"/>
+                                    </view>
+                                    <view class="time-small">{{formatedPlayTime}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view id = "scroll_bottom"></view>
+       </scroll-view>
+    </view>
+    <view class = "chat_bottom">
+        <view class = "chat_ipt">
+            <text class = "voice_icon" bindtap = "handleVoice">{{ voiceTips }}</text>
+            <text class = "voice_btn" wx:if = "{{ isVoice }}" bindtouchstart = "handleRecord" bindtouchend = "handleEndRecord">按住 说话</text>
+            <input class = "ipt_btn" wx:else bindinput="bindKeyInput" placeholder="{{ placeholder }}" auto-focus = "{{ isFocus }}" focus = "{{ isFocus }}" disabled = "{{ isDesabled }}" value = "{{ iptVal }}"/>
+            <text wx:if = "{{ !isSend }}" class = "add_btn" bindtap = "handleEvent">添加</text>
+            <text wx:else class = "add_btn" bindtap = "handleSend">发送</text>
+        </view>
+        <view class = "chat_sels" hidden = "{{ isSelected }}">
+            <view class = "addPic" bindtap = "handlePic">
+                <view>
+                    <text class = "pic_icon"></text>
+                </view>
+                <text>图片</text>
+            </view>
+            <view class = "addGag" hidden = "{{ isShowForbiden }}">
+                <view>
+                    <switch bindchange="switchChange" checked = "{{ isdisabled }}"/>
+                </view>
+                <text>禁言</text>
+            </view>
+        </view>
+    </view>
+</view>

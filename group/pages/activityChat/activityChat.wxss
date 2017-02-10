@@ -1,0 +1,169 @@
+.tips {
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -100px;
+    width: 200px;
+    height: 200px;
+    background: #ccc;
+    border-radius: 10px;
+}
+.time_num {
+    font-size: 40px;
+    text-align: center;
+}
+/*imgScale*/
+.scale_img {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    z-index: 1000;
+}
+.image_list {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 60px;
+    left: 0;
+    background: center center no-repeat;
+    background-size: contain;
+}
+.chat_bottom {
+    box-sizing: border-box;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+}
+.voice_icon,.add_btn {
+    flex: 1;
+    align-self: center;
+}
+.voice_btn,.ipt_btn {
+    flex: 5;
+}
+.chat_ipt {
+    display: flex;
+    padding: 10px 15px;
+}
+.ipt_btn {
+    border-bottom: 1px solid #f8f8f8;
+    background: #f8f8f8;
+    padding:5px 10px;
+}
+.add_btn {
+    text-align: right;
+}
+.voice_btn {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #f8f8f8;
+    padding: 6.5px 0;
+    text-align: center;
+}
+.chat_sels {
+    box-sizing: border-box;
+    border-top: 1px solid #f8f8f8;
+    display: flex;
+    width: 100%;
+    background: #fff;
+    padding: 20px 15px;
+}
+.addPic,.addGag {
+    flex: 1;
+    text-align: center;
+}
+.pic_icon {
+    display: inline-block;
+    width: 40px;
+    height: 32px;
+    background-image:url(http://q.xiaoyuanhao.com/file/8a9def1f-53b0-4553-9fc8-e56a55b920be.png);
+}
+.weui-progress {
+    padding: 6px 10px;
+    background: #fff;
+    min-width: 25%;
+    border-radius: 20px;
+}
+.play_icon {
+    margin-right: 5px;
+    font-size: 12px;
+    color: #ccc;
+}
+.time-small {
+    margin-left: 5px;
+    font-size: 12px;
+    color: #ccc;
+}
+
+.chat_cont {
+    box-sizing: border-box;
+    position: fixed;
+    width: 100%;
+    height: 92%;
+    padding: 0 15px;
+}
+.page-body-time {
+    display: flex;
+    margin: 15px 0;
+}
+.other_person,.self_person {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ccc;
+    margin-right: 15px;
+    align-self: flex-end;
+}
+.other_person image,.self_person image {
+    width: 100%;
+    height: 100%;
+}
+.self_person {
+    margin-left: 15px;
+    margin-right: 0;
+}
+.other_info,.self_info {
+    flex: 1;
+    align-self: center;
+}
+ .self_cont {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #fff;
+    border-radius: 5px;
+    max-width: 60%;
+    word-wrap: break-word;
+    text-align: left;
+}
+.self_progress {
+    position: absolute;
+    right: 0;
+    bottom:-10px;
+}
+.self_info {
+    text-align: right;
+}
+.uploadImg {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+.uploadImg image {
+    width: 100%;
+}   
+.other_info_text {
+    font-size: 12px;
+    color: #ccc;
+}
+.change_time {
+    text-align: center;
+    color: #ccc;
+    font-size: 12px;
+}
