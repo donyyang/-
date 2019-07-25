@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-button": "../../dist/button/index",
+    "i-cell-group": "../../dist/cell-group/index",
+    "i-cell": "../../dist/cell/index",
+    "i-modal": "../../dist/modal/index",
+    "i-swipeout": "../../dist/swipeout/index",
+    "i-input": "../../dist/input/index",
+    "i-load-more": "../../dist/load-more/index"
+  },
+  "navigationBarTitleText": "产品列表"
+}

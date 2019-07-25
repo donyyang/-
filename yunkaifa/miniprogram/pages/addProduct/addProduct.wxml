@@ -1,0 +1,28 @@
+<view class = "proCont">
+  <view class = "i-cell i-input">
+    <view class = "i-cell-hd i-input-title">产品名称：</view>
+    <input 
+      value = "{{ proName }}"
+      class = "i-input-input i-cell-bd"
+      maxlength="20" 
+      bindinput = "handleName"
+      placeholder="请输入产品名称" />
+  </view>
+
+  <view class = "i-cell i-input">
+    <view class = "i-cell-hd i-input-title">产品数量：</view>
+    <input 
+      type = "number" 
+      value = "{{ proNum }}" 
+      bindinput = "handleCount"
+      maxlength="20" 
+      placeholder="请输入产品数量" />
+  </view>
+
+  <view class = "confirm">
+    <i-button 
+      bindtap = "handleConfirm" 
+      type="success" 
+      size="{{defaultSize}}">确定</i-button>
+  </view>
+</view>
